@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 
@@ -12,29 +12,29 @@ public class PlayerScore {
 	}
 
 	// class method
-	static public string ListToXML(ArrayList playerList) {
+	static public string ListToXML(List<PlayerScore> playerList) {
 		StringWriter str = new StringWriter();
 		XmlTextWriter xml = new XmlTextWriter(str);
 		
 		// start doc and root el.
-	    xml.WriteStartDocument();
-        xml.WriteWhitespace("\n  ");
+		xml.WriteStartDocument();
+		xml.WriteWhitespace("\n  ");
 		xml.WriteStartElement("playerScoreList");
-        xml.WriteWhitespace("\n  ");
+		xml.WriteWhitespace("\n  ");
 
 		// add elements for each object in list
-	    foreach (PlayerScore playerScoreObject in playerList) {
+		foreach (PlayerScore playerScoreObject in playerList) {
 			playerScoreObject.ObjectToElement( xml );
-	    }
+		}
 	
 		// end root and document
-	    xml.WriteEndElement();
-        xml.WriteWhitespace("\n  ");
-	    xml.WriteEndDocument();
+		xml.WriteEndElement();
+		xml.WriteWhitespace("\n  ");
+		xml.WriteEndDocument();
 
-	    return str.ToString();
+		return str.ToString();
 	}
-	
+
 	private void ObjectToElement(XmlTextWriter xml) {
 		// data element
 		xml.WriteStartElement("player");
